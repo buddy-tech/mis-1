@@ -1,0 +1,19 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	
+	</ui:style>
+	<g:HTMLPanel>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Alerts
+			</div>
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+				<h3> This is for alert</h3>
+			</div>
+			<!-- .panel-body -->
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

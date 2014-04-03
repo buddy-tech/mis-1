@@ -1,0 +1,64 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	.important {
+		font-weight: bold;
+	}
+	</ui:style>
+	<g:HTMLPanel>
+
+		<div id="dashboardcontainer">
+			<div class="wrapper">
+				<!-- Start of the side bar -->
+				<nav class="navbar-default navbar-static-side" role="navigation">
+					<div class="sidebar-collapse">
+						<ul class="nav" id="side-menu">
+							<li>
+								<g:Anchor href="#dashboard" ui:field="ancDashboard">
+									<i class="fa fa-dashboard fa-fw"></i>
+									Dashboard
+								</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor href="#customer" ui:field="ancCustomer">
+									<i class="fa fa-edit fa-fw"></i>
+									Manage Customer
+								</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor href="#quotation" ui:field="ancQuotation">
+									<i class="fa fa-files-o fa-fw"></i>
+									Manage Quotation
+								</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor href="#reports" ui:field="ancReports">
+									<i class="fa fa-table fa-fw"></i>
+									Reports
+								</g:Anchor>
+							</li>
+						</ul>
+					</div>
+				</nav>
+				<!-- Main container for the content this will. Added as simple panel 
+					to added only one component -->
+
+				<div id="page-wrapper">
+					
+					<div class="row">
+						<div class="col-lg-12">
+								<g:SimplePanel ui:field="dashboardPanel">
+								</g:SimplePanel>
+						</div>
+						<!-- /.col-lg-12 -->
+					</div>
+					<!-- /.row -->
+				</div>
+
+
+
+			</div>
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,0 +1,4 @@
+# Module misweb2014
+# RPC service class, partial path of RPC policy file
+com.kumar.mis.app.client.GreetingService, 23A26FC48351AAFE3CF1F0D30279FE18.gwt.rpc
+com.kumar.mis.app.shared.service.CustomerService, 8C88AB490D5ECF70407531DC4FA3613C.gwt.rpc

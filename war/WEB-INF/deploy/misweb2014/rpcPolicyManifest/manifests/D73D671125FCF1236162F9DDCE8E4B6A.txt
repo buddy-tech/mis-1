@@ -1,0 +1,2 @@
+serviceClass: com.kumar.mis.app.client.GreetingService
+path: 23A26FC48351AAFE3CF1F0D30279FE18.gwt.rpc
