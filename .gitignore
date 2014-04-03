@@ -15,7 +15,7 @@ local.properties
 .classpath
 
 .loadpath
-
+gwt-unitCache
 # External tool builders
 .externalToolBuilders/
 
