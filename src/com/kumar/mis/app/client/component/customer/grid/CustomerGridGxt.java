@@ -155,6 +155,7 @@ public class CustomerGridGxt extends Composite {
 		btnEditCustomer
 				.setHTML("<span class='glyphicon glyphicon-edit'></span>&nbsp;&nbsp;Edit Customer");
 		btnEditCustomer.setStyleName("btn btn-success btn-sm");
+	
 		btnEditCustomer.setEnabled(false);
 		mainToolBar.add(btnEditCustomer);
 		con.add(mainToolBar, new VerticalLayoutData(1, -1));

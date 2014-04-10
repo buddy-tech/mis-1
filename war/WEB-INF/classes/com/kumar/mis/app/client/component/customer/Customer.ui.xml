@@ -27,14 +27,14 @@
 		</div>
 
 		<div class="row">
-			<div class="col-md-3">
+			<!-- <div class="col-md-3">
 			
 				<g:SimplePanel >
 					<g:ScrollPanel ui:field="customerListPanel"  height="600px">
 					</g:ScrollPanel>
 				</g:SimplePanel>
-			</div>
-			<div class="col-md-9">
+			</div> -->
+			<div class="col-md-12">
 				<g:SimplePanel ui:field="customerPanel"></g:SimplePanel>
 			</div>
 		</div>

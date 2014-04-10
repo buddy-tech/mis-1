@@ -29,6 +29,12 @@ public class CustomerServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public String saveCustomer(CustomerEntity customerEntity) throws Exception {
+		
+		if(customerEntity.getId() !=null){
+			System.out.println(" Update called...");
+			// update
+			return customerEntity.getId();
+		}
 
 		customerEntity.setId(UUID.randomUUID().toString());
 		Objectify ofy = ObjectifyService.begin();

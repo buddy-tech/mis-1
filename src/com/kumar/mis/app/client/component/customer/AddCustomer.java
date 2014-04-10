@@ -1,5 +1,8 @@
 package com.kumar.mis.app.client.component.customer;
 
+import java.util.Iterator;
+
+import com.google.appengine.labs.repackaged.com.google.common.collect.Multiset.Entry;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -16,6 +19,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.kumar.mis.app.client.component.common.SuccessAlert;
 import com.kumar.mis.app.client.component.customer.grid.CustomerGridGxt;
 import com.kumar.mis.app.shared.common.LoggerMessage;
+import com.kumar.mis.app.shared.common.data.StaticDataDb;
 import com.kumar.mis.app.shared.domain.CustomerEntity;
 import com.kumar.mis.app.shared.service.CustomerService;
 import com.kumar.mis.app.shared.service.CustomerServiceAsync;
@@ -36,14 +40,15 @@ public class AddCustomer extends Composite {
 	TextBox txtAddressLine1;
 	@UiField
 	TextBox txtAddressLine2;
-	@UiField
-	TextBox txtCity;
+
 	@UiField
 	Button btnAddCustomer;
 	@UiField(provided = true)
 	ListBox stateListBox;
 	@UiField(provided = true)
 	ListBox countryListBox;
+	@UiField(provided = true)
+	ListBox cityListBox;
 
 	@UiField(provided = true)
 	CustomerEntity customer;
@@ -54,18 +59,35 @@ public class AddCustomer extends Composite {
 	public AddCustomer() {
 
 		stateListBox = new ListBox();
-		stateListBox.addItem("TamilNadu", "TN");
-		stateListBox.addItem("Kerala", "KL");
-		stateListBox.addItem("Andhra Pradesh", "AP");
-		stateListBox.addItem("Maharastra", "MA");
 
+		Iterator iter = StaticDataDb.getCities().entrySet().iterator();
+		cityListBox = new ListBox();
+		while (iter.hasNext()) {
+			java.util.Map.Entry<String, String> entry = (java.util.Map.Entry<String, String>) iter
+					.next();
+			cityListBox.addItem(entry.getKey(), entry.getValue());
+		}
+
+		iter = StaticDataDb.getStates().entrySet().iterator();
+
+		stateListBox = new ListBox();
+		while (iter.hasNext()) {
+			java.util.Map.Entry<String, String> entry = (java.util.Map.Entry<String, String>) iter
+					.next();
+			stateListBox.addItem(entry.getKey(), entry.getValue());
+		}
+
+		iter = StaticDataDb.getCountries().entrySet().iterator();
 		countryListBox = new ListBox();
-		countryListBox.addItem("India", "In");
-		countryListBox.addItem("United States Of America", "USA");
-		countryListBox.addItem("United Kingdom", "UK");
+		while (iter.hasNext()) {
+			java.util.Map.Entry<String, String> entry = (java.util.Map.Entry<String, String>) iter
+					.next();
+			countryListBox.addItem(entry.getKey(), entry.getValue());
+		}
 
 		customer = new CustomerEntity();
 		initWidget(uiBinder.createAndBindUi(this));
+		
 	}
 
 	// Called by edit customer entity
@@ -96,7 +118,6 @@ public class AddCustomer extends Composite {
 		customer.setContactNumber(txtContactNumber.getText());
 		customer.setAddressLine1(txtAddressLine1.getText());
 		customer.setAddressLine2(txtAddressLine2.getText());
-		customer.setCity(txtCity.getText());
 
 		customer.setState(stateListBox.getItemText(stateListBox
 				.getSelectedIndex()));
@@ -149,10 +170,45 @@ public class AddCustomer extends Composite {
 		txtEmailAddress.setText(selectedItem.getCustomerEmail());
 		txtAddressLine1.setText(selectedItem.getAddressLine1());
 		txtAddressLine2.setText(selectedItem.getAddressLine2());
-		txtCity.setText(selectedItem.getCity());
+
+		String city = selectedItem.getCity();
+		String state = selectedItem.getState();
+		String country = selectedItem.getCountry();
+
+		int count = cityListBox.getItemCount();
+
+		for (int i = 0; i < count; i++) {
+			LoggerMessage.printToConsole("Count is "+count);
+			String itemText = cityListBox.getItemText(i);
+			LoggerMessage.printToConsole("Count is "+itemText);
+			if (selectedItem.getCity().equalsIgnoreCase(itemText)) {
+				cityListBox.setSelectedIndex(i);
+				break;
+			}
+		}
+
+		count = stateListBox.getItemCount();
+
+		for (int i = 0; i < count; i++) {
+			String itemText = stateListBox.getItemText(i);
+			if (selectedItem.getState().equalsIgnoreCase(itemText)) {
+				stateListBox.setSelectedIndex(i);
+				break;
+			}
+		}
+
+		count = countryListBox.getItemCount();
+
+		for (int i = 0; i < count; i++) {
+			String itemText = countryListBox.getItemText(i);
+			if (selectedItem.getCountry().equalsIgnoreCase(itemText)) {
+				countryListBox.setSelectedIndex(i);
+				break;
+			}
+		}
 		
-		stateListBox.setItemSelected(2, true);
-		countryListBox.setItemSelected(2, true);
+		btnAddCustomer.setText("Update Customer");
+
 	}
 
 }
