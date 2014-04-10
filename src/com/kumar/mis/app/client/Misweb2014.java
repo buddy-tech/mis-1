@@ -46,8 +46,8 @@ public class Misweb2014 implements EntryPoint {
 		LoggerMessage.isConsolePrintingEnabled = true;
 		loginPage = new MISLoginPage(this);
 
-//		RootPanel.get("mainContainer").add(loginPage);
-		RootPanel.get("mainContainer").add(new CustomerForm());
+		RootPanel.get("mainContainer").add(loginPage);
+		//RootPanel.get("mainContainer").add(new CustomerForm());
 	}
 
 	public UserContext getUserContext() {
