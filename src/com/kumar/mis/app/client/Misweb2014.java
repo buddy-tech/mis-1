@@ -7,6 +7,7 @@ import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.kumar.mis.app.client.component.common.SuccessAlert;
+import com.kumar.mis.app.client.component.customer.CustomerForm;
 import com.kumar.mis.app.client.component.dashboard.DashboardMain;
 import com.kumar.mis.app.client.component.login.MISLoginPage;
 import com.kumar.mis.app.shared.UserStore;
@@ -45,7 +46,8 @@ public class Misweb2014 implements EntryPoint {
 		LoggerMessage.isConsolePrintingEnabled = true;
 		loginPage = new MISLoginPage(this);
 
-		RootPanel.get("mainContainer").add(loginPage);
+//		RootPanel.get("mainContainer").add(loginPage);
+		RootPanel.get("mainContainer").add(new CustomerForm());
 	}
 
 	public UserContext getUserContext() {

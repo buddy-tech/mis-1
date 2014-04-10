@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.kumar.mis.app.client.component.common.SuccessAlert;
+import com.kumar.mis.app.client.component.customer.grid.CustomerGridGxt;
 import com.kumar.mis.app.shared.common.LoggerMessage;
 import com.kumar.mis.app.shared.domain.CustomerEntity;
 import com.kumar.mis.app.shared.service.CustomerService;
@@ -67,6 +68,14 @@ public class AddCustomer extends Composite {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
+	// Called by edit customer entity
+	public AddCustomer(CustomerEntity customerEntity) {
+
+		super();
+		/**/
+
+	}
+
 	public void initPage() {
 		LoggerMessage.printToConsole("Inside add customer....");
 	}
@@ -110,7 +119,7 @@ public class AddCustomer extends Composite {
 								.getParent();
 
 						customer.remove(thisObject);
-						customer.add(new CustomerGrid());
+						customer.add(new CustomerGridGxt());
 
 						RootPanel.get("alerts").add(
 								new SuccessAlert(
@@ -131,6 +140,19 @@ public class AddCustomer extends Composite {
 					}
 				});
 
+	}
+
+	public void initPageForEdit(CustomerEntity selectedItem) {
+		this.customer = selectedItem;
+		txtCustomerName.setText(selectedItem.getCustomerName());
+		txtContactNumber.setText(selectedItem.getContactNumber());
+		txtEmailAddress.setText(selectedItem.getCustomerEmail());
+		txtAddressLine1.setText(selectedItem.getAddressLine1());
+		txtAddressLine2.setText(selectedItem.getAddressLine2());
+		txtCity.setText(selectedItem.getCity());
+		
+		stateListBox.setItemSelected(2, true);
+		countryListBox.setItemSelected(2, true);
 	}
 
 }

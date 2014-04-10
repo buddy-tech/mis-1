@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.kumar.mis.app.shared.domain.CustomerEntity;
+import com.sencha.gxt.data.shared.loader.PagingLoadConfig;
+import com.sencha.gxt.data.shared.loader.PagingLoadResult;
 
 public interface CustomerServiceAsync {
 
@@ -12,5 +14,8 @@ public interface CustomerServiceAsync {
 
 	void list(int start, int length,
 			AsyncCallback<List<CustomerEntity>> callback);
+
+	void listAll(PagingLoadConfig loadConfig,
+			AsyncCallback<PagingLoadResult<CustomerEntity>> callback);
 
 }

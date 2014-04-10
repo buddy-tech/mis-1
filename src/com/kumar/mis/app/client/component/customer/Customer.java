@@ -27,6 +27,7 @@ import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SelectionModel;
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.kumar.mis.app.client.component.common.SuccessAlert;
+import com.kumar.mis.app.client.component.customer.grid.CustomerGridGxt;
 import com.kumar.mis.app.shared.common.LoggerMessage;
 import com.kumar.mis.app.shared.domain.CustomerEntity;
 import com.kumar.mis.app.shared.service.CustomerService;
@@ -52,9 +53,6 @@ public class Customer extends Composite {
 	@UiField
 	Button btnSearchCustomer;
 
-	@UiField
-	ScrollPanel customerListPanel;
-
 	CustomerGrid customerGrid;
 
 	final SingleSelectionModel<CustomerEntity> selectionModel = new SingleSelectionModel<CustomerEntity>(
@@ -67,75 +65,7 @@ public class Customer extends Composite {
 
 	public void initPage() {
 		customerPanel.add(new AddCustomer());
-		// Add a cell list to the customerListPanel
-		// call customer service and get all the data
-
-		final CustomerServiceAsync customerServiceAsync = GWT
-				.create(CustomerService.class);
-
-		CellList<CustomerEntity> customerListTable = new CellList<CustomerEntity>(
-				new CustomerListCell(), CustomerListCell.PROVIDES_KEY);
-
 		
-		customerListTable.setSelectionModel(selectionModel);
-		selectionModel
-				.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-
-					@Override
-					public void onSelectionChange(SelectionChangeEvent event) {
-						LoggerMessage.printToConsole(selectionModel
-								.getSelectedObject().toString());
-						
-						Info.display("Selected", " Customer Selected. Functionality not implemented"+selectionModel.getSelectedObject().toString());
-					}
-				});
-
-		customerListTable.setHeight("400px");
-		customerListTable.setStyleName("well well-lg");
-		
-
-		AsyncDataProvider<CustomerEntity> asyncDataProvider = new AsyncDataProvider<CustomerEntity>() {
-
-			@Override
-			protected void onRangeChanged(HasData<CustomerEntity> display) {
-				final int start = display.getVisibleRange().getStart();
-				int length = display.getVisibleRange().getLength();
-				AsyncCallback<List<CustomerEntity>> asyncCallback = new AsyncCallback<List<CustomerEntity>>() {
-
-					@Override
-					public void onSuccess(List<CustomerEntity> result) {
-						LoggerMessage.printToConsole(" returned "+result);
-						updateRowData(start, result);
-						LoggerMessage.printToConsole("After updating row");
-					}
-
-					@Override
-					public void onFailure(Throwable caught) {
-						LoggerMessage
-								.printToConsole("Error while fetching data");
-
-					}
-				};
-
-				customerServiceAsync.list(start, length, asyncCallback);
-
-			}
-		};
-		
-		
-		asyncDataProvider.addDataDisplay(customerListTable);
-		customerListTable.setPageSize(50);
-		
-		asyncDataProvider.updateRowCount(100, true);
-		
-		SimplePager pager = new SimplePager();
-		pager.setDisplay(customerListTable);
-
-		VerticalPanel vp = new VerticalPanel();
-		vp.add(customerListTable);
-		vp.add(pager);
-		
-		customerListPanel.add(vp);
 		
 	}
 
@@ -160,8 +90,8 @@ public class Customer extends Composite {
 		Widget childWidget = customerPanel.getWidget();
 		if (childWidget != null) {
 			customerPanel.remove(childWidget);
-		}
-		customerGrid = new CustomerGrid();
-		customerPanel.add(customerGrid);
+		}		
+		
+		customerPanel.add(new CustomerGridGxt());
 	}
 }
