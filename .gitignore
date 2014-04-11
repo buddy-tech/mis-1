@@ -209,3 +209,6 @@ pip-log.txt
 .mr.developer.cfg
 /test-classes
 /test/
+/war/WEB-INF/appengine-generated
+/war/WEB-INF/classes
+/war/WEB-INF/deploy
