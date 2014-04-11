@@ -19,6 +19,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.kumar.mis.app.client.Misweb2014;
 import com.kumar.mis.app.client.component.customer.Customer;
 import com.kumar.mis.app.client.component.dashboard.child.Dashboard;
+import com.kumar.mis.app.client.component.parts.PartsPanel;
 import com.kumar.mis.app.shared.common.LoggerMessage;
 
 public class DashboardMain extends Composite {
@@ -40,11 +41,15 @@ public class DashboardMain extends Composite {
 	@UiField
 	Anchor ancReports;
 	@UiField
+	Anchor ancParts;
+	@UiField
 	SimplePanel dashboardPanel;
 
 	Dashboard dashboardContent = null;
 
 	Customer customer;
+	
+	PartsPanel partsPanel;
 
 	public DashboardMain() {
 
@@ -58,7 +63,7 @@ public class DashboardMain extends Composite {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
-	@UiHandler({ "ancDashboard", "ancCustomer", "ancQuotation", "ancReports" })
+	@UiHandler({ "ancDashboard", "ancCustomer", "ancQuotation", "ancReports","ancParts" })
 	void handleDashboardMenuSelections(ClickEvent clickEvent) {
 
 		LoggerMessage.printToConsole(" Called the handler"
@@ -77,6 +82,10 @@ public class DashboardMain extends Composite {
 			customer = new Customer();
 			dashboardPanel.add(customer);
 			customer.initPage();
+		} else if (clickEvent.getSource() == ancParts) {
+			partsPanel = new PartsPanel();
+			dashboardPanel.add(partsPanel);
+			partsPanel.initPage();
 		} else {
 			LoggerMessage.printToConsole(" not same");
 		}

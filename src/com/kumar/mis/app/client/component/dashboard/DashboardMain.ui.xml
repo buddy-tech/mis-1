@@ -12,7 +12,7 @@
 			<div class="wrapper">
 				<!-- Start of the side bar -->
 				<nav class="navbar-default navbar-static-side" role="navigation">
-					<div class="sidebar-collapse">
+					<div class="sidebar-collapse"> 
 						<ul class="nav" id="side-menu">
 							<li>
 								<g:Anchor href="#dashboard" ui:field="ancDashboard">
@@ -30,6 +30,12 @@
 								<g:Anchor href="#quotation" ui:field="ancQuotation">
 									<i class="fa fa-files-o fa-fw"></i>
 									Manage Quotation
+								</g:Anchor>
+							</li>
+							<li>
+								<g:Anchor href="#parts" ui:field="ancParts">
+									<i class="fa fa-files-o fa-fw"></i>
+									Manage Parts
 								</g:Anchor>
 							</li>
 							<li>
