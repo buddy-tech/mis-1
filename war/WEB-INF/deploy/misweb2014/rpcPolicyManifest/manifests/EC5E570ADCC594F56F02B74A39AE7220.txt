@@ -1,2 +1,0 @@
-serviceClass: com.kumar.mis.app.shared.service.CustomerService
-path: 8C88AB490D5ECF70407531DC4FA3613C.gwt.rpc
