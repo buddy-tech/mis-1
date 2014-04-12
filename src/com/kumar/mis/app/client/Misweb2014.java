@@ -42,12 +42,9 @@ public class Misweb2014 implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-
 		LoggerMessage.isConsolePrintingEnabled = true;
 		loginPage = new MISLoginPage(this);
-
 		RootPanel.get("mainContainer").add(loginPage);
-		//RootPanel.get("mainContainer").add(new CustomerForm());
 	}
 
 	public UserContext getUserContext() {
@@ -59,31 +56,17 @@ public class Misweb2014 implements EntryPoint {
 	}
 
 	public void changeToDashboardOnAuthentication() {
-		// Clear the screen jumbotron and the login and move to the dashboard
-
-		// Get jumbotron and login element
 		loginPage.getElement().removeFromParent();
-		// DOM.removeChild(RootPanel.get("rootContainer").getElement(),
-		// RootPanel.get("jumbotron").getElement());
-		// Update the Header
 		Element headerText = DOM.getElementById("txtHeaderText");
 		Anchor headerachor = Anchor.wrap(headerText);
-		LoggerMessage.printToConsole(headerachor.getText());
 		headerachor.setText("Welcome "
 				+ userContext.getUser().getEmailAddress());
 		RootPanel.get("jumbotron").getElement().removeFromParent();
 		dashboardMain = new DashboardMain(this);
-
-		// RootPanel.get("pageContainer").add(new
-		// SuccessAlert("Authentication successful"));
-
 		RootPanel.get("alerts").add(
 				new SuccessAlert("Authentication successful"));
-
 		RootPanel.get("mainContainer").add(dashboardMain);
-
 		dashboardMain.initPage();
-
 	}
 
 }

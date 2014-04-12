@@ -1,38 +1,19 @@
-package com.kumar.mis.app.client.component.customer;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+	package com.kumar.mis.app.client.component.customer;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.cellview.client.CellList;
-import com.google.gwt.user.cellview.client.SimplePager;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.view.client.AsyncDataProvider;
-import com.google.gwt.view.client.HasData;
-import com.google.gwt.view.client.ListDataProvider;
-import com.google.gwt.view.client.SelectionChangeEvent;
-import com.google.gwt.view.client.SelectionModel;
 import com.google.gwt.view.client.SingleSelectionModel;
-import com.kumar.mis.app.client.component.common.SuccessAlert;
 import com.kumar.mis.app.client.component.customer.grid.CustomerGridGxt;
 import com.kumar.mis.app.shared.common.LoggerMessage;
 import com.kumar.mis.app.shared.domain.CustomerEntity;
-import com.kumar.mis.app.shared.service.CustomerService;
-import com.kumar.mis.app.shared.service.CustomerServiceAsync;
-import com.sencha.gxt.widget.core.client.info.Info;
 
 public class Customer extends Composite {
 

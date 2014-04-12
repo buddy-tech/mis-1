@@ -10,7 +10,6 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.Query;
-import com.kumar.mis.app.shared.common.LoggerMessage;
 import com.kumar.mis.app.shared.domain.CustomerEntity;
 import com.kumar.mis.app.shared.service.CustomerService;
 import com.sencha.gxt.data.shared.loader.PagingLoadConfig;
@@ -29,8 +28,8 @@ public class CustomerServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public String saveCustomer(CustomerEntity customerEntity) throws Exception {
-		
-		if(customerEntity.getId() !=null){
+
+		if (customerEntity.getId() != null) {
 			System.out.println(" Update called...");
 			// update
 			return customerEntity.getId();
@@ -65,8 +64,6 @@ public class CustomerServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public PagingLoadResult<CustomerEntity> listAll(PagingLoadConfig loadConfig) {
-		// TODO Auto-generated method stub
-
 		int length = loadConfig.getLimit();
 		int offset = loadConfig.getOffset();
 		int start = offset;
@@ -91,6 +88,15 @@ public class CustomerServiceImpl extends RemoteServiceServlet implements
 
 		return new PagingLoadResultBean<CustomerEntity>(returnList,
 				returnList.size(), loadConfig.getOffset());
+	}
+
+	@Override
+	public void deleteCustomerById(String id) {
+
+		Objectify ofy = ObjectifyService.begin();
+
+		ofy.delete(CustomerEntity.class, id);
+
 	}
 
 }

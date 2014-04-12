@@ -18,4 +18,6 @@ public interface CustomerServiceAsync {
 	void listAll(PagingLoadConfig loadConfig,
 			AsyncCallback<PagingLoadResult<CustomerEntity>> callback);
 
+	void deleteCustomerById(String id, AsyncCallback<Void> callback);
+
 }

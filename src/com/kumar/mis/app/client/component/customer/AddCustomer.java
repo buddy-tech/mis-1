@@ -1,8 +1,9 @@
 package com.kumar.mis.app.client.component.customer;
 
 import java.util.Iterator;
+import java.util.Map.Entry;
 
-import com.google.appengine.labs.repackaged.com.google.common.collect.Multiset.Entry;
+import com.google.common.base.Preconditions;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -16,6 +17,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
+import com.kumar.mis.app.client.component.common.ErrorAlert;
 import com.kumar.mis.app.client.component.common.SuccessAlert;
 import com.kumar.mis.app.client.component.customer.grid.CustomerGridGxt;
 import com.kumar.mis.app.shared.common.LoggerMessage;
@@ -60,11 +62,11 @@ public class AddCustomer extends Composite {
 
 		stateListBox = new ListBox();
 
-		Iterator iter = StaticDataDb.getCities().entrySet().iterator();
+		Iterator<Entry<String, String>> iter = StaticDataDb.getCities()
+				.entrySet().iterator();
 		cityListBox = new ListBox();
 		while (iter.hasNext()) {
-			java.util.Map.Entry<String, String> entry = (java.util.Map.Entry<String, String>) iter
-					.next();
+			Entry<String, String> entry = (Entry<String, String>) iter.next();
 			cityListBox.addItem(entry.getKey(), entry.getValue());
 		}
 
@@ -72,22 +74,20 @@ public class AddCustomer extends Composite {
 
 		stateListBox = new ListBox();
 		while (iter.hasNext()) {
-			java.util.Map.Entry<String, String> entry = (java.util.Map.Entry<String, String>) iter
-					.next();
+			Entry<String, String> entry = (Entry<String, String>) iter.next();
 			stateListBox.addItem(entry.getKey(), entry.getValue());
 		}
 
 		iter = StaticDataDb.getCountries().entrySet().iterator();
 		countryListBox = new ListBox();
 		while (iter.hasNext()) {
-			java.util.Map.Entry<String, String> entry = (java.util.Map.Entry<String, String>) iter
-					.next();
+			Entry<String, String> entry = (Entry<String, String>) iter.next();
 			countryListBox.addItem(entry.getKey(), entry.getValue());
 		}
 
 		customer = new CustomerEntity();
 		initWidget(uiBinder.createAndBindUi(this));
-		
+
 	}
 
 	// Called by edit customer entity
@@ -107,22 +107,33 @@ public class AddCustomer extends Composite {
 
 		CustomerServiceAsync customerServiceAsync = GWT
 				.create(CustomerService.class);
-
-		LoggerMessage.printToConsole(customer.toString()
-				+ ">>>>>>>>>>>>>>>>>>>>>>>");
-
 		final AddCustomer thisObject = this;
-
-		customer.setCustomerName(txtCustomerName.getText());
-		customer.setCustomerEmail(txtEmailAddress.getText());
-		customer.setContactNumber(txtContactNumber.getText());
-		customer.setAddressLine1(txtAddressLine1.getText());
-		customer.setAddressLine2(txtAddressLine2.getText());
+		customer.setCustomerName(txtCustomerName.getText().trim());
+		customer.setCustomerEmail(txtEmailAddress.getText().trim());
+		customer.setContactNumber(txtContactNumber.getText().trim());
+		customer.setAddressLine1(txtAddressLine1.getText().trim());
+		customer.setAddressLine2(txtAddressLine2.getText().trim());
 
 		customer.setState(stateListBox.getItemText(stateListBox
 				.getSelectedIndex()));
 		customer.setCountry(countryListBox.getItemText(countryListBox
 				.getSelectedIndex()));
+
+		// set the validation logic
+
+		if (customer.getCustomerName().length() == 0) {
+			RootPanel.get("alerts").add(
+					new ErrorAlert("Customer name cannot be blank"));
+			return;
+		} else if (customer.getCustomerEmail().length() == 0) {
+			RootPanel.get("alerts").add(
+					new ErrorAlert("Customer email cannot be blank"));
+			return;
+		} else if (customer.getContactNumber().length() == 0) {
+			RootPanel.get("alerts").add(
+					new ErrorAlert("Customer contact cannot be blank"));
+			return;
+		}
 
 		/**
 		 * Save customer.
@@ -171,16 +182,12 @@ public class AddCustomer extends Composite {
 		txtAddressLine1.setText(selectedItem.getAddressLine1());
 		txtAddressLine2.setText(selectedItem.getAddressLine2());
 
-		String city = selectedItem.getCity();
-		String state = selectedItem.getState();
-		String country = selectedItem.getCountry();
-
 		int count = cityListBox.getItemCount();
 
 		for (int i = 0; i < count; i++) {
-			LoggerMessage.printToConsole("Count is "+count);
+			LoggerMessage.printToConsole("Count is " + count);
 			String itemText = cityListBox.getItemText(i);
-			LoggerMessage.printToConsole("Count is "+itemText);
+			LoggerMessage.printToConsole("Count is " + itemText);
 			if (selectedItem.getCity().equalsIgnoreCase(itemText)) {
 				cityListBox.setSelectedIndex(i);
 				break;
@@ -206,7 +213,7 @@ public class AddCustomer extends Composite {
 				break;
 			}
 		}
-		
+
 		btnAddCustomer.setText("Update Customer");
 
 	}

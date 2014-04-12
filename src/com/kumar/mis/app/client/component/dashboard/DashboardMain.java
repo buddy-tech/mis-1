@@ -1,20 +1,13 @@
 package com.kumar.mis.app.client.component.dashboard;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Element;
-import com.google.gwt.dom.client.Node;
-import com.google.gwt.dom.client.NodeList;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.kumar.mis.app.client.Misweb2014;
 import com.kumar.mis.app.client.component.customer.Customer;
@@ -48,7 +41,7 @@ public class DashboardMain extends Composite {
 	Dashboard dashboardContent = null;
 
 	Customer customer;
-	
+
 	PartsPanel partsPanel;
 
 	public DashboardMain() {
@@ -59,11 +52,12 @@ public class DashboardMain extends Composite {
 	public DashboardMain(Misweb2014 misweb2014) {
 
 		this.misweb2014 = misweb2014;
-
 		initWidget(uiBinder.createAndBindUi(this));
+		initPage();
 	}
 
-	@UiHandler({ "ancDashboard", "ancCustomer", "ancQuotation", "ancReports","ancParts" })
+	@UiHandler({ "ancDashboard", "ancCustomer", "ancQuotation", "ancReports",
+			"ancParts" })
 	void handleDashboardMenuSelections(ClickEvent clickEvent) {
 
 		LoggerMessage.printToConsole(" Called the handler"
@@ -92,6 +86,11 @@ public class DashboardMain extends Composite {
 	}
 
 	public void initPage() {
+		Widget widget = dashboardPanel.getWidget();
+		if (widget != null)
+			dashboardPanel.remove(widget);
+		dashboardContent = new Dashboard();
+		dashboardPanel.add(dashboardContent);
 
 	}
 

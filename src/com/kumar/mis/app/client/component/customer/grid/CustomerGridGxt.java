@@ -3,22 +3,21 @@ package com.kumar.mis.app.client.component.customer.grid;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gwt.cell.client.Cell.Context;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
+import com.kumar.mis.app.client.component.common.SuccessAlert;
 import com.kumar.mis.app.client.component.customer.AddCustomer;
-import com.kumar.mis.app.shared.common.LoggerMessage;
 import com.kumar.mis.app.shared.domain.CustomerEntity;
 import com.kumar.mis.app.shared.service.CustomerService;
 import com.kumar.mis.app.shared.service.CustomerServiceAsync;
-import com.sencha.gxt.cell.core.client.TextButtonCell;
 import com.sencha.gxt.data.client.loader.RpcProxy;
 import com.sencha.gxt.data.shared.ListStore;
 import com.sencha.gxt.data.shared.loader.DataProxy;
@@ -28,14 +27,10 @@ import com.sencha.gxt.data.shared.loader.PagingLoadResult;
 import com.sencha.gxt.data.shared.loader.PagingLoader;
 import com.sencha.gxt.widget.core.client.Composite;
 import com.sencha.gxt.widget.core.client.ContentPanel;
-import com.sencha.gxt.widget.core.client.FramedPanel;
-import com.sencha.gxt.widget.core.client.button.TextButton;
 import com.sencha.gxt.widget.core.client.container.VerticalLayoutContainer;
 import com.sencha.gxt.widget.core.client.container.VerticalLayoutContainer.VerticalLayoutData;
 import com.sencha.gxt.widget.core.client.event.RowClickEvent;
 import com.sencha.gxt.widget.core.client.event.RowClickEvent.RowClickHandler;
-import com.sencha.gxt.widget.core.client.event.SelectEvent;
-import com.sencha.gxt.widget.core.client.event.SelectEvent.SelectHandler;
 import com.sencha.gxt.widget.core.client.grid.ColumnConfig;
 import com.sencha.gxt.widget.core.client.grid.ColumnModel;
 import com.sencha.gxt.widget.core.client.grid.Grid;
@@ -55,7 +50,7 @@ public class CustomerGridGxt extends Composite {
 	public CustomerGridGxt() {
 		// Create Column configs
 
-		ListStore<CustomerEntity> listStore = new ListStore<CustomerEntity>(
+		final ListStore<CustomerEntity> listStore = new ListStore<CustomerEntity>(
 				gridProperties.key());
 
 		ColumnConfig<CustomerEntity, String> nameColumn = new ColumnConfig<CustomerEntity, String>(
@@ -155,9 +150,16 @@ public class CustomerGridGxt extends Composite {
 		btnEditCustomer
 				.setHTML("<span class='glyphicon glyphicon-edit'></span>&nbsp;&nbsp;Edit Customer");
 		btnEditCustomer.setStyleName("btn btn-success btn-sm");
-	
+
+		final Button btnDeleteCustomer = new Button();
+		btnDeleteCustomer
+				.setHTML("<span class='glyphicon glyphicon-edit'></span>&nbsp;&nbsp;Delete Customer");
+		btnDeleteCustomer.setStyleName("btn btn-warning btn-sm");
+
 		btnEditCustomer.setEnabled(false);
+		btnDeleteCustomer.setEnabled(false);
 		mainToolBar.add(btnEditCustomer);
+		mainToolBar.add(btnDeleteCustomer);
 		con.add(mainToolBar, new VerticalLayoutData(1, -1));
 		con.add(customerGrid, new VerticalLayoutData(1, 1));
 		con.add(toolBar, new VerticalLayoutData(1, -1));
@@ -169,6 +171,7 @@ public class CustomerGridGxt extends Composite {
 			@Override
 			public void onRowClick(RowClickEvent event) {
 				btnEditCustomer.setEnabled(true);
+				btnDeleteCustomer.setEnabled(true);
 			}
 		});
 
@@ -184,10 +187,10 @@ public class CustomerGridGxt extends Composite {
 				customer.remove(gridPanel.getParent());
 
 				// add add customer screen
-				
-				AddCustomer addCustomer  = new AddCustomer();
-				addCustomer.initPageForEdit(customerGrid.getSelectionModel().getSelectedItem());
-				
+
+				AddCustomer addCustomer = new AddCustomer();
+				addCustomer.initPageForEdit(customerGrid.getSelectionModel()
+						.getSelectedItem());
 
 				customer.add(addCustomer);
 
@@ -208,6 +211,39 @@ public class CustomerGridGxt extends Composite {
 				// add add customer screen
 
 				customer.add(new AddCustomer());
+			}
+		});
+
+		btnDeleteCustomer.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+
+				CustomerEntity customerEntity = customerGrid
+						.getSelectionModel().getSelectedItem();
+				
+				listStore.remove(customerEntity);
+
+				customerServiceAsync.deleteCustomerById(customerEntity.getId(),
+						new AsyncCallback<Void>() {
+
+							@Override
+							public void onFailure(Throwable caught) {
+
+								Window.alert(" Error while deleting record");
+
+							}
+
+							@Override
+							public void onSuccess(Void result) {
+								RootPanel
+										.get("alerts")
+										.add(new SuccessAlert(
+												"Customer deleted Successfully "));
+
+							}
+						});
+
 			}
 		});
 

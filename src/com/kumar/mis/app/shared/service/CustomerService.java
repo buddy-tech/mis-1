@@ -16,5 +16,7 @@ public interface CustomerService extends RemoteService {
 	List<CustomerEntity> list(int start, int length);
 	
 	PagingLoadResult<CustomerEntity> listAll(PagingLoadConfig loadConfig);
+	
+	void deleteCustomerById(String id);
 
 }

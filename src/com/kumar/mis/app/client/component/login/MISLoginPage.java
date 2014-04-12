@@ -29,8 +29,6 @@ public class MISLoginPage extends Composite {
 	PasswordTextBox txtPassword;
 	@UiField
 	Button btnSubmit;
-	@UiField
-	Button btnCancel;
 
 	@UiField(provided = true)
 	User user;
@@ -44,7 +42,7 @@ public class MISLoginPage extends Composite {
 
 		this.misweb2014 = misweb2014;
 		txtPassword = new PasswordTextBox();
-		user = new User("kumar@kumar.com","123456");
+		user = new User("kumar@kumar.com", "123456");
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
@@ -59,26 +57,17 @@ public class MISLoginPage extends Composite {
 		User loginUser = new User(email, password);
 
 		UserContext uc = UserStore.authenticate(loginUser);
-		
-		if(uc != null){
+
+		if (uc != null) {
 			misweb2014.setUserContext(uc);
-		/*	MessageBox box = new MessageBox(" Authentication Success" );
-			box.setPredefinedButtons(PredefinedButton.YES);
-			box.setIcon(MessageBox.ICONS.info());
-			box.setMessage("Authentication Success");
-			box.show();*/
-			
 			misweb2014.changeToDashboardOnAuthentication();
-		}
-		else{
-			MessageBox box = new MessageBox(" Authentication Error" );
+		} else {
+			MessageBox box = new MessageBox(" Authentication Error");
 			box.setPredefinedButtons(PredefinedButton.YES);
 			box.setIcon(MessageBox.ICONS.error());
 			box.setMessage(" The user name password is not valid. Please login again.");
 			box.show();
 		}
-		
-		
 
 	}
 
