@@ -23,8 +23,13 @@
 <link href="theme/font-awesome/css/font-awesome.css" rel="stylesheet">
 <!-- SB Admin CSS - Include with every page -->
 <link href="theme/css/sb-admin.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	href="datepicker/css/datepicker.css" />
 <link rel="stylesheet" type="text/css" href="misweb2014/reset.css" />
-
+<script src="theme/js/jquery-1.10.2.js"></script>
+<!-- SB Admin Scripts - Include with every page -->
+<script src="theme/js/sb-admin.js"></script>
+<script src="datepicker/js/bootstrap-datepicker.js"></script>
 
 
 
@@ -60,7 +65,7 @@
 			Your web browser must have JavaScript enabled in order for this
 			application to display correctly.</div>
 	</noscript>
-	<div id="rootContainer" class="container" style="padding: 5px;">
+	<div id="rootContainer" class="wrapper" style="padding: 5px;">
 		<!-- Header -->
 		<div id="header">
 			<nav class="navbar navbar-inverse" role="navigation">
@@ -77,11 +82,11 @@
 					</div>
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse"
-						id="bs-example-navbar-collapse-1">
+					<div class="collapse navbar-collapse" id="rightMenu">
 						<ul class="nav navbar-nav navbar-right">
 							<li><a id="txtHeaderText" href="#">Welcome Guest</a></li>
 						</ul>
+
 					</div>
 					<!-- /.navbar-collapse -->
 				</div>
@@ -101,26 +106,22 @@
 				</div>
 			</div>
 		</div>
-		<div id="alerts">
-			
-		</div>
+		<div id="alerts"></div>
 
-		<div id="mainContainer">
-			
-		</div>
+		<div id="mainContainer"></div>
 
 	</div>
-	
-	 <!-- Core Scripts - Include with every page -->
-    <script src="theme/js/jquery-1.10.2.js"></script>
-    <script src="theme/js/bootstrap.min.js"></script>
-    <script src="theme/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 
-    <!-- Page-Level Plugin Scripts - Blank -->
+	<!-- Core Scripts - Include with every page -->
 
-    <!-- SB Admin Scripts - Include with every page -->
-    <script src="theme/js/sb-admin.js"></script>
+	<script src="theme/js/bootstrap.min.js"></script>
+	<script src="theme/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 
-    <!-- Page-Level Demo Scripts - Blank - Use for reference -->
+	<!-- Page-Level Plugin Scripts - Blank -->
+
+
+
+
+	<!-- Page-Level Demo Scripts - Blank - Use for reference -->
 </body>
 </html>

@@ -118,6 +118,7 @@ public class AddCustomer extends Composite {
 				.getSelectedIndex()));
 		customer.setCountry(countryListBox.getItemText(countryListBox
 				.getSelectedIndex()));
+		customer.setCity(cityListBox.getItemText(cityListBox.getSelectedIndex()));
 
 		// set the validation logic
 

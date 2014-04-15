@@ -1,7 +1,5 @@
 package com.kumar.mis.app.shared.domain;
 
-import java.util.UUID;
-
 import javax.persistence.Id;
 
 import com.google.gwt.user.client.rpc.IsSerializable;

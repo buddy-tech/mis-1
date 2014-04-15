@@ -10,35 +10,37 @@
 			<nav class="navbar navbar-default" role="navigation">
 				<ul class="nav navbar-nav">
 					<li>
-						<g:Anchor text="Add Customer" ui:field="ancAddCustomer">
-							
+						<g:Anchor text="Add Quotation Request" ui:field="ancQuotationRequest">
+
 						</g:Anchor>
-						
+
+					</li>
+					<li>
+						<g:Anchor text="Respond to Quotation" ui:field="ancQuotationRespond">
+
+						</g:Anchor>
+
 					</li>
 				</ul>
 				<form class="navbar-form navbar-left" role="search">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search Customer By Name"></input>
+						<input type="text" class="form-control" placeholder="Search Quotation By Name"></input>
 					</div>
-					
-					<g:Button styleName="btn btn-default" text="Search" ui:field="btnSearchCustomer"> </g:Button>
+
+					<g:Button styleName="btn btn-default" text="Search"
+						ui:field="btnQuotationSearch">
+					</g:Button>
 				</form>
 			</nav>
 		</div>
 
 		<div class="row">
-			<!-- <div class="col-md-3">
-			
-				<g:SimplePanel >
-					<g:ScrollPanel ui:field="customerListPanel"  height="600px">
-					</g:ScrollPanel>
-				</g:SimplePanel>
-			</div> -->
+			<!-- <div class="col-md-3"> <g:SimplePanel > <g:ScrollPanel ui:field="customerListPanel" 
+				height="600px"> </g:ScrollPanel> </g:SimplePanel> </div> -->
 			<div class="col-md-12">
-				<g:SimplePanel ui:field="customerPanel"></g:SimplePanel>
+				<g:SimplePanel ui:field="quotationPanel"></g:SimplePanel>
 			</div>
 		</div>
-
 
 	</g:HTMLPanel>
 </ui:UiBinder> 

@@ -13,7 +13,7 @@ public interface CustomerService extends RemoteService {
 	
 	public String saveCustomer(CustomerEntity customerEntity) throws Exception;
 	
-	List<CustomerEntity> list(int start, int length);
+	List<CustomerEntity> list();
 	
 	PagingLoadResult<CustomerEntity> listAll(PagingLoadConfig loadConfig);
 	

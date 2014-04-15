@@ -13,6 +13,7 @@ import com.kumar.mis.app.client.Misweb2014;
 import com.kumar.mis.app.client.component.customer.Customer;
 import com.kumar.mis.app.client.component.dashboard.child.Dashboard;
 import com.kumar.mis.app.client.component.parts.PartsPanel;
+import com.kumar.mis.app.client.component.quotation.QuotationPanel;
 import com.kumar.mis.app.shared.common.LoggerMessage;
 
 public class DashboardMain extends Composite {
@@ -43,6 +44,9 @@ public class DashboardMain extends Composite {
 	Customer customer;
 
 	PartsPanel partsPanel;
+	
+	QuotationPanel quotationPanel;
+	
 
 	public DashboardMain() {
 
@@ -80,6 +84,11 @@ public class DashboardMain extends Composite {
 			partsPanel = new PartsPanel();
 			dashboardPanel.add(partsPanel);
 			partsPanel.initPage();
+		}
+		if (clickEvent.getSource() == ancQuotation) {
+			quotationPanel = new QuotationPanel();
+			dashboardPanel.add(quotationPanel);
+			quotationPanel.initPage();
 		} else {
 			LoggerMessage.printToConsole(" not same");
 		}

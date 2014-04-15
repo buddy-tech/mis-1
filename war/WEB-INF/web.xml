@@ -16,6 +16,19 @@
     <url-pattern>/misweb2014/custservice</url-pattern>
   </servlet-mapping>
   
+  
+   <servlet>
+    <servlet-name>partservice</servlet-name>
+    <servlet-class>com.kumar.mis.app.server.service.PartsServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>partservice</servlet-name>
+    <url-pattern>/misweb2014/partservice</url-pattern>
+  </servlet-mapping>
+  
+  
+    
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>Misweb2014.html</welcome-file>

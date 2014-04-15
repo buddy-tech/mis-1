@@ -9,6 +9,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.kumar.mis.app.client.component.common.SuccessAlert;
 import com.kumar.mis.app.client.component.customer.CustomerForm;
 import com.kumar.mis.app.client.component.dashboard.DashboardMain;
+import com.kumar.mis.app.client.component.home.RightHeaderMenu;
 import com.kumar.mis.app.client.component.login.MISLoginPage;
 import com.kumar.mis.app.shared.UserStore;
 import com.kumar.mis.app.shared.common.LoggerMessage;
@@ -62,10 +63,12 @@ public class Misweb2014 implements EntryPoint {
 		headerachor.setText("Welcome "
 				+ userContext.getUser().getEmailAddress());
 		RootPanel.get("jumbotron").getElement().removeFromParent();
+		RootPanel.get("txtHeaderText").getElement().removeFromParent();	
 		dashboardMain = new DashboardMain(this);
 		RootPanel.get("alerts").add(
 				new SuccessAlert("Authentication successful"));
 		RootPanel.get("mainContainer").add(dashboardMain);
+		RootPanel.get("rightMenu").add(new RightHeaderMenu(userContext));
 		dashboardMain.initPage();
 	}
 

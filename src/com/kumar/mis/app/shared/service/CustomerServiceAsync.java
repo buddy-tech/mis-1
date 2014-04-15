@@ -12,8 +12,7 @@ public interface CustomerServiceAsync {
 	void saveCustomer(CustomerEntity customerEntity,
 			AsyncCallback<String> callback);
 
-	void list(int start, int length,
-			AsyncCallback<List<CustomerEntity>> callback);
+	void list(AsyncCallback<List<CustomerEntity>> callback);
 
 	void listAll(PagingLoadConfig loadConfig,
 			AsyncCallback<PagingLoadResult<CustomerEntity>> callback);

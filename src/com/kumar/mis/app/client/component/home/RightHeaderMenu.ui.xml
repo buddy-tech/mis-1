@@ -1,0 +1,77 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+
+	</ui:style>
+	<g:HTMLPanel>
+		<ul class="nav navbar-top-links navbar-right">
+
+			<!-- /.dropdown -->
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					<i class="fa fa-bell fa-fw"></i>
+					<i class="fa fa-caret-down"></i>
+				</a>
+				<ul class="dropdown-menu dropdown-alerts">
+					<li>
+						<a href="#">
+							<div>
+								<i class="fa fa-comment fa-fw"></i>
+								Alert 1
+								<span class="pull-right text-muted small">4 minutes ago</span>
+							</div>
+						</a>
+					</li>
+					<li class="divider"></li>
+
+					<li>
+						<a href="#">
+							<div>
+								<i class="fa fa-upload fa-fw"></i>
+								Alert 2
+								<span class="pull-right text-muted small">4 minutes ago</span>
+							</div>
+						</a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a class="text-center" href="#">
+							<strong>See All Alerts</strong>
+							<i class="fa fa-angle-right"></i>
+						</a>
+					</li>
+				</ul>
+				<!-- /.dropdown-alerts -->
+			</li>
+
+
+			<!-- /.dropdown -->
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					<i class="fa fa-user fa-fw"></i>
+					<i class="fa fa-caret-down"></i>
+				</a>
+				<ul class="dropdown-menu dropdown-user">
+					<li>
+						<g:Anchor ui:field="ancUserProfile">
+							<i class="fa fa-user fa-fw"></i>
+							User Profile
+						</g:Anchor>
+					</li>
+
+					<li class="divider"></li>
+					<li>
+						<g:Anchor ui:field="ancUserLogout">
+							<i class="fa fa-sign-out fa-fw"></i>
+							Logout
+						</g:Anchor>
+
+					</li>
+				</ul>
+				<!-- /.dropdown-user -->
+			</li>
+			<!-- /.dropdown -->
+		</ul>
+	</g:HTMLPanel>
+</ui:UiBinder> 

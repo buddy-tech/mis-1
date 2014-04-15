@@ -31,6 +31,7 @@
 									<i class="fa fa-files-o fa-fw"></i>
 									Manage Quotation
 								</g:Anchor>
+								
 							</li>
 							<li>
 								<g:Anchor href="#parts" ui:field="ancParts">
