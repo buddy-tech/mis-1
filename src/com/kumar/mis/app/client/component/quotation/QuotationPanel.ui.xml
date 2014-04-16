@@ -24,12 +24,19 @@
 				</ul>
 				<form class="navbar-form navbar-left" role="search">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search Quotation By Name"></input>
+						<input type="text" class="form-control" placeholder="Search Quotation Request By Name" style="width:200px"></input>
 					</div>
+					<g:Button styleName="btn btn-default" text="Search"
+						ui:field="btnQuotationRequestSearch">
+					</g:Button>
 
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search Quotation By Name" style="width:200px"></input>
+					</div>
 					<g:Button styleName="btn btn-default" text="Search"
 						ui:field="btnQuotationSearch">
 					</g:Button>
+
 				</form>
 			</nav>
 		</div>

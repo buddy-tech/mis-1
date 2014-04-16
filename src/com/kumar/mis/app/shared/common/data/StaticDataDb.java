@@ -10,6 +10,7 @@ public class StaticDataDb {
 	private static HashMap<String, String> states = new HashMap<String, String>();
 	private static HashMap<String, String> countries = new HashMap<String, String>();
 	private static HashMap<String, String> requestMode = new HashMap<String, String>();
+	private static HashMap<String, String> requestStatus = new HashMap<String, String>();
 
 	static {
 		cities.put("Chennai", "Chennai");
@@ -30,6 +31,11 @@ public class StaticDataDb {
 		requestMode.put("email", "Email");
 		requestMode.put("phone", "Phone");
 		requestMode.put("others", "Others");
+
+		requestStatus.put("inprogress", "In Progress");
+		requestStatus.put("sent", "Sent");
+		requestStatus.put("closed", "closed");
+
 	}
 
 	public static HashMap<String, String> getStates() {
@@ -48,6 +54,9 @@ public class StaticDataDb {
 
 	public static HashMap<String, String> getRequestMode() {
 		return requestMode;
+	}
+	public static HashMap<String, String> getRequestStatus() {
+		return requestStatus;
 	}
 
 }

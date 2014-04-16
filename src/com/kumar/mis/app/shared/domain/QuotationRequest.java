@@ -13,12 +13,18 @@ public class QuotationRequest implements IsSerializable {
 
 	CustomerEntity customer;
 
+	String name;
+
 	Date dateCreated;
 	Date dateUpdated;
 	Date requestDate;
 	Date responseDate;
 	String description;
-	String requestMode;
+	String requestMode = "email";
+
+	String customerId;
+
+	String status = "inprogress";
 
 	public QuotationRequest() {
 
@@ -88,13 +94,39 @@ public class QuotationRequest implements IsSerializable {
 		this.requestMode = requestMode;
 	}
 
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public String toString() {
 		return "QuotationRequest [id=" + id + ", customer=" + customer
-				+ ", dateCreated=" + dateCreated + ", dateUpdated="
-				+ dateUpdated + ", requestDate=" + requestDate
-				+ ", responseDate=" + responseDate + ", description="
-				+ description + ", requestMode=" + requestMode + "]";
+				+ ", name=" + name + ", dateCreated=" + dateCreated
+				+ ", dateUpdated=" + dateUpdated + ", requestDate="
+				+ requestDate + ", responseDate=" + responseDate
+				+ ", description=" + description + ", requestMode="
+				+ requestMode + ", customerId=" + customerId + ", status="
+				+ status + "]";
 	}
 
 }

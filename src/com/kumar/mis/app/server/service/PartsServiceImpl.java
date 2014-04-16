@@ -21,7 +21,6 @@ public class PartsServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public void init() throws ServletException {
-		ObjectifyService.register(Parts.class);
 		super.init();
 	}
 

@@ -22,7 +22,6 @@ public class CustomerServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public void init() throws ServletException {
-		ObjectifyService.register(CustomerEntity.class);
 		super.init();
 	}
 

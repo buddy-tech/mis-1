@@ -2,25 +2,24 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
-
+	
 	</ui:style>
 	<g:HTMLPanel>
 		<ul class="nav navbar-top-links navbar-right">
 
 			<!-- /.dropdown -->
 			<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="alertList">
 					<i class="fa fa-bell fa-fw"></i>
 					<i class="fa fa-caret-down"></i>
 				</a>
-				<ul class="dropdown-menu dropdown-alerts">
+
+				<ul class="dropdown-menu dropdown-alerts" ui:field="alertList">
 					<li>
 						<a href="#">
-							<div>
-								<i class="fa fa-comment fa-fw"></i>
-								Alert 1
-								<span class="pull-right text-muted small">4 minutes ago</span>
-							</div>
+							<i class="fa fa-comment fa-fw"></i>
+							Alert 1
+							<span class="pull-right text-muted small">4 minutes ago</span>
 						</a>
 					</li>
 					<li class="divider"></li>

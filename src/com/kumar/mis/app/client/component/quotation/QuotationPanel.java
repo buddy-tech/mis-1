@@ -29,10 +29,11 @@ public class QuotationPanel extends Composite {
 	@UiField
 	Button btnQuotationSearch;
 	@UiField
+	Button btnQuotationRequestSearch;
+	@UiField
 	SimplePanel quotationPanel;
 
 	public QuotationPanel() {
-		
 
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -40,6 +41,12 @@ public class QuotationPanel extends Composite {
 
 	public void initPage() {
 		LoggerMessage.printToConsole(" Quotation Panel main panel initialized");
+
+		Widget childWidget = quotationPanel.getWidget();
+		if (childWidget != null) {
+			quotationPanel.remove(childWidget);
+		}
+		quotationPanel.add(new QuotationRequest());
 
 	}
 
@@ -65,13 +72,15 @@ public class QuotationPanel extends Composite {
 		}
 	}
 
-	@UiHandler({ "btnQuotationSearch" })
-	void handleQuotationSearch(ClickEvent event) {
+	@UiHandler({ "btnQuotationRequestSearch" })
+	void handleQuotationRequestSearch(ClickEvent event) {
 		LoggerMessage.printToConsole(" Quotation Search");
 		Widget childWidget = quotationPanel.getWidget();
 		if (childWidget != null) {
 			quotationPanel.remove(childWidget);
 		}
+
+		quotationPanel.add(new QuotationRequestGrid());
 	}
 
 }
